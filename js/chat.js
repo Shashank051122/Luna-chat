@@ -235,27 +235,30 @@ function sendMessage() {
 
     currentRequest = new AbortController();
 
-    fetch("https://luna-backend-6vhp.onrender.com, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: text}),
-        signal: currentRequest.signal
-    })
-    .then(res => res.json())
-    .then(data => {
+fetch("https://luna-backend-6vhp.onrender.com/chat", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: text }),
+    signal: currentRequest.signal
+})
+.then(res => res.json())
+.then(data => {
 
-        if (requestChatId !== currentChatId) return;
+    if (requestChatId !== currentChatId) return;
 
-        typeMessage(data.reply, requestChatId);
+    typeMessage(data.reply, requestChatId);
 
-        currentRequest = null;
-    })
-    .catch(err => {
-        if (err.name !== "AbortError") {
-            typeMessage("Error connecting AI", requestChatId);
-        }
-        currentRequest = null;
-    });
+    currentRequest = null;
+
+})
+.catch(err => {
+    if (err.name !== "AbortError") {
+        typeMessage("Error connecting AI", requestChatId);
+    }
+    currentRequest = null;
+});
 }
 
 
