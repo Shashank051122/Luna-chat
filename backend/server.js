@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("Server running...");
+    res.send("LUNA backend is running...");
 });
 
 app.post("/chat", async (req, res) => {
@@ -18,13 +18,14 @@ app.post("/chat", async (req, res) => {
         const history = req.body.history || [];
 
         const response = await axios.post(
-            "https://api.groq.com/openai/v1/chat/completions",
+            "https://openrouter.ai/api/v1/chat/completions",
             {
-                model: "openai/gpt-oss-20b",
+                model: "openai/gpt-oss-20b:free",
                 messages: [
                     {
                         role: "system",
-                        content: "You are LUNA, a smart and helpful AI assistant."
+                        content:
+                            "You are LUNA, a smart and helpful AI assistant."
                     },
                     ...history,
                     {
@@ -35,7 +36,7 @@ app.post("/chat", async (req, res) => {
             },
             {
                 headers: {
-                    "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+                    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                     "Content-Type": "application/json"
                 }
             }
@@ -44,13 +45,19 @@ app.post("/chat", async (req, res) => {
         const reply = response.data.choices[0].message.content;
 
         res.json({ reply });
-
     } catch (error) {
-        console.error(error.response?.data || error.message);
-        res.status(500).json({ reply: "Error from AI" });
+        console.error(
+            error.response?.data || error.message
+        );
+
+        res.status(500).json({
+            reply: "I couldn't connect to the AI service right now."
+        });
     }
 });
 
-app.listen(5000, () => {
-    console.log("Server running on http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`LUNA backend running on port ${PORT}`);
 });
