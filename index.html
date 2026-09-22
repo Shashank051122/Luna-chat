@@ -2,191 +2,693 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUNA</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>LUNA - AI Assistant</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
 
 <body>
 
-<!-- 🔥 LOGIN / REGISTER SCREEN -->
-<div class="login-screen">
+<!-- =========================================================
+     START SCREEN
+     ========================================================= -->
 
-    <h1 class="app-title">LUNA</h1>
+<div id="startScreen" class="start-screen">
 
-    <!-- START SCREEN -->
-    <div id="startScreen">
-        <button class="btn btn-primary w-100 mb-2" id="goLogin">Login</button>
-        <button class="btn btn-secondary w-100" id="goRegister">Create Account</button>
+    <div class="start-box">
+
+        <div class="luna-logo">
+            L
+        </div>
+
+        <h1>LUNA</h1>
+
+        <p>
+            Your AI-powered conversation assistant
+        </p>
+
+        <button
+            id="startBtn"
+            class="btn btn-primary start-btn"
+            type="button"
+        >
+            Get Started
+        </button>
+
     </div>
 
-    <!-- LOGIN FORM -->
-    <div id="loginForm" class="d-none">
-        <h3>Login</h3>
+</div>
 
-        <input type="text" id="loginId" placeholder="User ID"><br><br>
-        <div class="password-wrapper">
-            <input type="password" id="loginPass" placeholder="Password">
-            <span class="toggle-password" data-target="loginPass">👁</span>
-        </div><br>
 
-        <button class="btn btn-primary w-100 login-btn">Login</button><br><br>
-        <button class="btn btn-light w-100 back-btn">⬅ Back</button>
+<!-- =========================================================
+     AUTH SCREEN
+     ========================================================= -->
+
+<div
+    id="authScreen"
+    class="auth-screen d-none"
+>
+
+    <div class="auth-box">
+
+        <div class="auth-logo">
+            L
+        </div>
+
+        <h2 id="authTitle">
+            Login to LUNA
+        </h2>
+
+        <p id="authSubtitle">
+            Continue your conversations
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="loginForm">
+
+            <div class="mb-3">
+
+                <label
+                    for="loginUser"
+                    class="form-label"
+                >
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="loginUser"
+                    class="form-control"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="mb-3 password-field">
+
+                <label
+                    for="loginPassword"
+                    class="form-label"
+                >
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        class="form-control"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="#loginPassword"
+                    >
+                        <i class="fas fa-eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="loginError"
+                class="auth-error"
+            ></div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <!-- REGISTER FORM -->
+
+        <form
+            id="registerForm"
+            class="d-none"
+        >
+
+            <div class="mb-3">
+
+                <label
+                    for="registerUser"
+                    class="form-label"
+                >
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="registerUser"
+                    class="form-control"
+                    autocomplete="username"
+                    required
+                >
+
+                <small>
+                    4–20 characters: letters, numbers or underscore
+                </small>
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label
+                    for="registerName"
+                    class="form-label"
+                >
+                    Profile Name
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label
+                    for="registerPassword"
+                    class="form-label"
+                >
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        class="form-control"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="#registerPassword"
+                    >
+                        <i class="fas fa-eye"></i>
+                    </button>
+
+                </div>
+
+                <small>
+                    Min 8 chars, uppercase, lowercase, number and special character
+                </small>
+
+            </div>
+
+
+            <div
+                id="registerError"
+                class="auth-error"
+            ></div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div class="auth-switch">
+
+            <span id="authSwitchText">
+                Don't have an account?
+            </span>
+
+            <button
+                id="switchAuthBtn"
+                type="button"
+                class="link-btn"
+            >
+                Register
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- REGISTER FORM -->
-    <div id="registerForm" class="d-none">
-        <h3>Create Account</h3>
+</div>
 
-        <input type="text" id="registerId" placeholder="User ID"><br><br>
-        <div class="password-wrapper">
-            <input type="password" id="registerPass" placeholder="Password">
-            <span class="toggle-password" data-target="registerPass">👁</span>
-        </div><br>
-        <input type="text" id="registerName" placeholder="Profile Name"><br><br>
 
-        <button class="btn btn-secondary w-100 register-btn">Create Account</button><br><br>
-        <button class="btn btn-light w-100 back-btn">⬅ Back</button>
-    </div>
+<!-- =========================================================
+     MAIN APPLICATION
+     ========================================================= -->
 
-</div> 
+<div
+    id="app"
+    class="app d-none"
+>
 
-<!-- 🔥 MAIN APP -->
-<div class="app-container d-flex d-none">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar p-3">
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
 
-        <button class="btn btn-primary w-100 mb-3 new-chat-btn">+ New Chat</button>
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
 
-        <div class="chat-history flex-grow-1 overflow-auto" id="chatHistory"></div>
+        <div class="sidebar-top">
 
-        <!-- 🔥 ONLY LOGOUT (profile removed) -->
-        <div class="mt-auto text-center">
-            <button class="btn btn-danger logout-btn">Logout</button>
+            <div class="sidebar-brand">
+
+                <div class="brand-logo">
+                    L
+                </div>
+
+                <div>
+
+                    <strong>LUNA</strong>
+
+                    <small>
+                        AI Assistant
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="new-chat-btn"
+                type="button"
+            >
+
+                <i class="fas fa-plus"></i>
+
+                <span>
+                    New Chat
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <div class="sidebar-title">
+            Chat History
+        </div>
+
+
+        <div
+            class="chat-history"
+            id="chatHistory"
+        ></div>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="menu-btn"
+                type="button"
+            >
+
+                <i class="fas fa-bars"></i>
+
+                Menu
+
+            </button>
+
+
+            <button
+                class="mode-btn"
+                type="button"
+            >
+
+                <i class="fas fa-moon"></i>
+
+                Dark Mode
+
+            </button>
+
         </div>
 
     </aside>
 
-    <!-- MAIN CHAT -->
-    <main class="chat-area flex-grow-1 d-flex flex-column">
+
+    <!-- =====================================================
+         CHAT AREA
+         ===================================================== -->
+
+    <main class="chat-area">
+
 
         <!-- HEADER -->
-<header class="p-3 border-bottom d-flex justify-content-between align-items-center">
 
-    <!-- LEFT SIDE -->
-    <div class="d-flex align-items-center gap-2">
+        <header class="chat-header">
 
-        <button class="btn btn-light d-md-none menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
+            <div class="header-left">
 
-        <button class="btn btn-dark mode-btn">🌙</button>
+                <button
+                    class="mobile-menu-btn"
+                    type="button"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
 
-        <h5 class="mb-0">LUNA</h5>
 
-    </div>
+                <div class="header-title">
 
-    <!-- RIGHT SIDE -->
-    <div class="d-flex align-items-center gap-2 header-user" id="profileToggle">
+                    <strong>
+                        LUNA
+                    </strong>
 
-        <div class="header-avatar">R</div>
-
-        <span class="header-username">User</span>
-
-    </div>
-
-</header>
-
-        <!-- WELCOME -->
-        <section class="welcome-screen text-center flex-grow-1 d-flex flex-column justify-content-center">
-
-            <i class="fas fa-robot fa-3x mb-3"></i>
-            <h2>How can I help you today?</h2>
-
-            <div class="container mt-4">
-                <div class="row g-3">
-
-                    <div class="col-md-3">
-                        <div class="card p-3 suggestion-card" data-text="Give me creative ideas">
-                            <i class="fas fa-lightbulb mb-2"></i>
-                            <h6>Ideas</h6>
-                            <p>Give me creative ideas</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card p-3 suggestion-card" data-text="Help with coding">
-                            <i class="fas fa-code mb-2"></i>
-                            <h6>Code</h6>
-                            <p>Help with coding</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card p-3 suggestion-card" data-text="Write content">
-                            <i class="fas fa-book mb-2"></i>
-                            <h6>Learn</h6>
-                            <p>Explain concepts</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card p-3 suggestion-card" data-text="Write content">
-                            <i class="fas fa-pen mb-2"></i>
-                            <h6>Write</h6>
-                            <p>Write content</p>
-                        </div>
-                    </div>
+                    <span>
+                        AI Assistant
+                    </span>
 
                 </div>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div
+                class="profile-container"
+            >
+
+                <button
+                    id="profileToggle"
+                    class="header-profile"
+                    type="button"
+                >
+
+                    <div
+                        class="header-avatar"
+                        id="headerAvatar"
+                    >
+                        U
+                    </div>
+
+                    <span
+                        class="header-username"
+                        id="headerUsername"
+                    >
+                        User
+                    </span>
+
+                    <i class="fas fa-chevron-down"></i>
+
+                </button>
+
+
+                <div
+                    id="profileDropdown"
+                    class="profile-dropdown d-none"
+                >
+
+                    <button
+                        id="editNameBtn"
+                        class="profile-option"
+                        type="button"
+                    >
+
+                        <i class="fas fa-user-edit"></i>
+
+                        Change Profile Name
+
+                    </button>
+
+
+                    <button
+                        id="changePasswordBtn"
+                        class="profile-option"
+                        type="button"
+                    >
+
+                        <i class="fas fa-key"></i>
+
+                        Change Password
+
+                    </button>
+
+
+                    <button
+                        class="profile-option logout-btn"
+                        type="button"
+                    >
+
+                        <i class="fas fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </button>
+
+
+                    <button
+                        class="profile-option delete-account-btn"
+                        type="button"
+                    >
+
+                        <i class="fas fa-trash"></i>
+
+                        Delete Account
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             MESSAGES
+             ================================================= -->
+
+        <section
+            class="messages"
+            id="messages"
+        >
+
+
+            <!-- WELCOME -->
+
+            <div
+                class="welcome-screen"
+                id="welcomeScreen"
+            >
+
+                <div class="welcome-logo">
+                    L
+                </div>
+
+                <h1>
+                    How can I help you?
+                </h1>
+
+                <p>
+                    Ask LUNA anything.
+                </p>
+
+
+                <!-- SUGGESTIONS -->
+
+                <div class="suggestions">
+
+
+                    <button
+                        class="suggestion-card"
+                        type="button"
+                        data-text="Give me creative ideas"
+                    >
+
+                        <i class="fas fa-lightbulb"></i>
+
+                        <strong>
+                            Ideas
+                        </strong>
+
+                        <span>
+                            Give me creative ideas
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="suggestion-card"
+                        type="button"
+                        data-text="Help me with coding"
+                    >
+
+                        <i class="fas fa-code"></i>
+
+                        <strong>
+                            Code
+                        </strong>
+
+                        <span>
+                            Help with coding
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="suggestion-card"
+                        type="button"
+                        data-text="Explain a concept to me"
+                    >
+
+                        <i class="fas fa-graduation-cap"></i>
+
+                        <strong>
+                            Learn
+                        </strong>
+
+                        <span>
+                            Explain a concept
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="suggestion-card"
+                        type="button"
+                        data-text="Help me write some content"
+                    >
+
+                        <i class="fas fa-pen"></i>
+
+                        <strong>
+                            Write
+                        </strong>
+
+                        <span>
+                            Help me write content
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPING -->
+
+            <div
+                class="typing-indicator d-none"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <span class="typing-text">
+                    LUNA is thinking...
+                </span>
+
             </div>
 
         </section>
 
-        <!-- MESSAGES -->
-        <section class="messages p-3 flex-grow-1"></section>
 
-        <!-- TYPING -->
-        <div class="typing-indicator px-3 d-none">
-            <p>AI is typing...</p>
-        </div>
+        <!-- =================================================
+             INPUT AREA
+             ================================================= -->
 
-        <!-- INPUT -->
-        <section class="input-area p-3 border-top">
+        <section class="input-area">
 
-            <div class="d-flex align-items-center gap-2">
+            <div class="input-container">
 
-                <button class="btn btn-light">
-                    <i class="fas fa-paperclip"></i>
-                </button>
 
-                <textarea class="form-control" rows="1" placeholder="Type your message..."></textarea>
+                <textarea
+                    id="messageInput"
+                    class="message-input"
+                    rows="1"
+                    maxlength="4000"
+                    placeholder="Type your message..."
+                ></textarea>
 
-                <!-- SEND -->
-                <button class="btn btn-primary send-btn">
+
+                <button
+                    class="send-btn"
+                    type="button"
+                    title="Send"
+                >
+
                     <i class="fas fa-paper-plane"></i>
+
                 </button>
 
-                <!-- STOP -->
-                <button class="btn btn-danger stop-btn d-none">
+
+                <button
+                    class="stop-btn d-none"
+                    type="button"
+                    title="Stop response"
+                >
+
                     <i class="fas fa-stop"></i>
+
                 </button>
+
 
             </div>
 
-            <small class="text-muted">Press Enter to send, Shift+Enter for new line</small>
+
+            <div class="input-note">
+
+                LUNA can make mistakes. Check important information.
+
+            </div>
 
         </section>
 
@@ -194,36 +696,84 @@
 
 </div>
 
-<div class="profile-dropdown d-none" id="profileDropdown">
 
-    <button class="profile-option" id="changePasswordBtn">
-    Change Password
-    </button>
+<!-- =========================================================
+     CHANGE PASSWORD MODAL
+     ========================================================= -->
 
-    <button class="profile-option" id="editNameBtn">
-        Change Profile Name
-    </button>
+<div
+    id="passwordModal"
+    class="custom-modal d-none"
+>
 
-    <button class="profile-option logout-btn">
-        Logout
-    </button>
+    <div class="modal-box">
 
-    <button class="profile-option delete-account-btn">
-        Delete Account
-    </button>
+        <button
+            id="closePasswordModal"
+            class="modal-close"
+            type="button"
+        >
+            <i class="fas fa-times"></i>
+        </button>
+
+        <h3>
+            Change Password
+        </h3>
+
+        <input
+            id="oldPassword"
+            type="password"
+            class="form-control mb-3"
+            placeholder="Current password"
+        >
+
+        <input
+            id="newPassword"
+            type="password"
+            class="form-control mb-3"
+            placeholder="New password"
+        >
+
+        <input
+            id="confirmPassword"
+            type="password"
+            class="form-control mb-3"
+            placeholder="Confirm new password"
+        >
+
+        <div
+            id="passwordChangeError"
+            class="auth-error"
+        ></div>
+
+        <button
+            id="savePasswordBtn"
+            class="btn btn-primary w-100"
+            type="button"
+        >
+            Change Password
+        </button>
+
+    </div>
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="js/chat.js"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
 
-<!-- JS -->
-<script src="js/chat.js"></script>
+<script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+></script>
+
+<script
+    src="js/chat.js"
+></script>
 
 </body>
 </html>

@@ -18,9 +18,9 @@ app.post("/chat", async (req, res) => {
         const history = req.body.history || [];
 
         const response = await axios.post(
-            "https://openrouter.ai/api/v1/chat/completions",
+            "https://api.groq.com/openai/v1/chat/completions",
             {
-                model: "meta-llama/llama-3-8b-instruct",
+                model: "openai/gpt-oss-20b",
                 messages: [
                     {
                         role: "system",
@@ -35,7 +35,7 @@ app.post("/chat", async (req, res) => {
             },
             {
                 headers: {
-                    "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+                    "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
                     "Content-Type": "application/json"
                 }
             }
